@@ -46,8 +46,8 @@ test('Invalid token', () => {
 });
 
 test('Invalid expression', () => {
-  const rpnExpression = "3 + 4";
-  expect(() => evaluateRPN(rpnExpression)).toThrow('Invalid expression');
+  const rpnExpression = "3 +";
+  expect(() => evaluateRPN(rpnExpression)).toThrow('Not enough operands for +');
 });
 
 test('Invalid expression: Complex Numbers', () => {
