@@ -3,10 +3,14 @@ function evaluateRPN(expression) {
   const tokens = expression.split(' ');
 
   for (const token of tokens) {
+
+    if(token === 'i')
+      throw new Error('Invalid expression: Complex numbers not supported');
     if (!isNaN(token)) {
       // If the token is a number, push it to the stack
       stack.push(parseFloat(token)); // Parse numbers as floats
-    } else if (isOperator(token)) {
+    }
+    else if (isOperator(token)) {
       // If the token is an operator, perform the operation based on the arity
       if (token === 'sqrt') {
         if (stack.length < 1) {
@@ -17,11 +21,12 @@ function evaluateRPN(expression) {
           throw new Error('Cannot take square root of a negative number');
         }
         stack.push(Math.sqrt(operand));
-      } else if (token === 'max') {
+      }
+      else if (token === 'max') {
         if (stack.length < 2) {
           throw new Error('Not enough operands for max');
         }
-  	const operand3 = stack.pop();
+  	    const operand3 = stack.pop();
         const operand2 = stack.pop();
         const operand1 = stack.pop();
         stack.push(Math.max(operand1, operand2, operand3));
@@ -33,7 +38,8 @@ function evaluateRPN(expression) {
         const operand1 = stack.pop();
         stack.push(performOperation(operand1, operand2, token));
       }
-    } else {
+    }
+    else {
       // Invalid token in the expression
       throw new Error('Invalid token: ' + token);
     }

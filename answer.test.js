@@ -45,14 +45,14 @@ test('Invalid token', () => {
   expect(() => evaluateRPN(rpnExpression)).toThrow('Invalid token: @');
 });
 
-test('Invalid expression', () => {
+test('Invalid expression: Not enough operand', () => {
   const rpnExpression = "3 +";
   expect(() => evaluateRPN(rpnExpression)).toThrow('Not enough operands for +');
 });
 
 test('Invalid expression: Complex Numbers', () => {
   const rpnExpression = "3 4 + i *";
-  expect(() => evaluateRPN(rpnExpression)).toThrow('Invalid token: i');
+  expect(() => evaluateRPN(rpnExpression)).toThrow('Invalid expression: Complex numbers not supported');
 });
 
 test('Invalid expression: Undefined Operation', () => {
