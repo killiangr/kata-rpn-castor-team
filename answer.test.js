@@ -25,6 +25,11 @@ test('Valid RPN expression: Max of Operands', () => {
   expect(evaluateRPN(rpnExpression)).toBe(10);
 });
 
+test('Handle all possible errors, with nice error messages', () => {
+  const rpnExpression = "3 +";
+  expect(evaluateRPN(rpnExpression)).toBe("Not enought operand in the expression");
+});
+
 test('Valid RPN expression: Floating Point', () => {
   const rpnExpression = "3.5 2.1 +";
   expect(evaluateRPN(rpnExpression)).toBeCloseTo(5.6, 2);
