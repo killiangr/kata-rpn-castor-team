@@ -27,7 +27,7 @@ test('Valid RPN expression: Max of Operands', () => {
 
 test('Handle all possible errors, with nice error messages', () => {
   const rpnExpression = "3 +";
-  expect(evaluateRPN(rpnExpression)).toBe("Not enought operand in the expression");
+  expect(evaluateRPN(rpnExpression)).toBe("Invalid Expression");
 });
 
 test('Valid RPN expression: Floating Point', () => {
@@ -57,5 +57,5 @@ test('Invalid expression: Complex Numbers', () => {
 
 test('Invalid expression: Undefined Operation', () => {
   const rpnExpression = "3 4 ? 2 *";
-  expect(() => evaluateRPN(rpnExpression)).toThrow('Invalid operator: ?');
+  expect(() => evaluateRPN(rpnExpression)).toThrow('Invalid token: ?');
 });

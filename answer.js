@@ -21,7 +21,7 @@ function evaluateRPN(expression) {
         if (stack.length < 2) {
           throw new Error('Not enough operands for max');
         }
-  const operand3 = stack.pop();
+  	const operand3 = stack.pop();
         const operand2 = stack.pop();
         const operand1 = stack.pop();
         stack.push(Math.max(operand1, operand2, operand3));
@@ -64,7 +64,7 @@ function performOperation(operand1, operand2, operator) {
       }
       return operand1 / operand2;
     default:
-      throw new Error('Invalid operator: ' + operator);
+      throw new Error('Invalid token: ' + operator);
   }
 }
 
