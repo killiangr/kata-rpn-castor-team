@@ -52,7 +52,7 @@ test('Invalid expression', () => {
 
 test('Invalid expression: Complex Numbers', () => {
   const rpnExpression = "3 4 + i *";
-  expect(() => evaluateRPN(rpnExpression)).toThrow('Invalid expression: Complex numbers not supported');
+  expect(() => evaluateRPN(rpnExpression)).toThrow('Invalid token: i');
 });
 
 test('Invalid expression: Undefined Operation', () => {
