@@ -5,6 +5,7 @@ test('Valid RPN expression from the exercise', () => {
   expect(evaluateRPN(rpnExpression)).toBe(22);
 });
 
+test('Valid RPN expression from the exercise 2', () => {
   const rpnExpression = "4 2 + 3 -";
   expect(evaluateRPN(rpnExpression)).toBe(3);
 });
