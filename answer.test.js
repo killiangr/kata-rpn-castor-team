@@ -1,5 +1,14 @@
 const evaluateRPN = require('./answer');
 
+test('Valid RPN expression from the exercise', () => {
+  const rpnExpression = "20 2 +";
+  expect(evaluateRPN(rpnExpression)).toBe(22);
+});
+
+  const rpnExpression = "4 2 + 3 -";
+  expect(evaluateRPN(rpnExpression)).toBe(3);
+});
+
 test('Valid RPN expression', () => {
   const rpnExpression = "3 4 + 2 *";
   expect(evaluateRPN(rpnExpression)).toBe(14);
