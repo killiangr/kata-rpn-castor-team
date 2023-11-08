@@ -5,13 +5,33 @@ function evaluateRPN(expression) {
     for (const token of tokens) {
       if (!isNaN(token)) {
         // If the token is a number, push it to the stack
-        stack.push(Number(token));
+        stack.push(parseFloat(token)); // Parse numbers as floats
       } else if (isOperator(token)) {
-        // If the token is an operator, pop two values from the stack, apply the operation, and push the result back to the stack
-        const operand2 = stack.pop();
-        const operand1 = stack.pop();
-        const result = performOperation(operand1, operand2, token);
-        stack.push(result);
+        // If the token is an operator, perform the operation based on the arity
+        if (token === 'sqrt') {
+          if (stack.length < 1) {
+            throw new Error('Not enough operands for sqrt');
+          }
+          const operand = stack.pop();
+          if (operand < 0) {
+            throw new Error('Cannot take square root of a negative number');
+          }
+          stack.push(Math.sqrt(operand));
+        } else if (token === 'max') {
+          if (stack.length < 2) {
+            throw new Error('Not enough operands for max');
+          }
+          const operand2 = stack.pop();
+          const operand1 = stack.pop();
+          stack.push(Math.max(operand1, operand2));
+        } else {
+          if (stack.length < 2) {
+            throw new Error('Not enough operands for ' + token);
+          }
+          const operand2 = stack.pop();
+          const operand1 = stack.pop();
+          stack.push(performOperation(operand1, operand2, token));
+        }
       } else {
         // Invalid token in the expression
         throw new Error('Invalid token: ' + token);
@@ -26,7 +46,7 @@ function evaluateRPN(expression) {
   }
   
   function isOperator(token) {
-    return ['+', '-', '*', '/'].includes(token);
+    return ['+', '-', '*', '/', 'sqrt', 'max'].includes(token);
   }
   
   function performOperation(operand1, operand2, operator) {
@@ -43,7 +63,7 @@ function evaluateRPN(expression) {
         }
         return operand1 / operand2;
       default:
-        throw Error('Invalid operator: ' + operator);
+        throw new Error('Invalid operator: ' + operator);
     }
   }
   
